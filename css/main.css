@@ -1,0 +1,258 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('../assets/fonts/Minecraft.otf') format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MinecraftBold';
+    src: url('../assets/fonts/Minecraft-Bold.otf') format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MinecraftAlt';
+    src: url('../assets/fonts/Minecrafter.Reg.ttf');
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Minecraft', sans-serif;
+    position: relative;
+    overflow:auto;
+}
+
+/* fixed background video */
+
+.bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -2;
+}
+
+.bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: -1;
+}
+
+/* nav */
+
+nav {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 40px;
+    background-color: #000000b2;
+    backdrop-filter: blur(10px);                  /* Blurs content behind the card */
+}
+
+.nav-left ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-logo {
+    display: block;
+    height: 20px;
+    margin-right: 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    -webkit-user-drag: none;
+}
+
+nav a:hover {
+    color: #55ff55;
+}
+
+/* nav-right */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-button-block {
+    -webkit-user-drag: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 42px;
+    margin: 3px;
+    background: #398c2c;
+    box-shadow:
+        inset 0 -5px 0 #2c4d2b,
+        0 0 0 3px #1b1b1b;
+    color: #fff;
+    font-family: 'MinecraftAlt', sans-serif;
+    text-decoration: none;
+}
+
+.nav-button-block:hover {
+    background: #45a636;
+    color: #fff;
+}
+
+.nav-button-block:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+
+/* top / hero */
+
+#top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 80px 40px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.top-content {
+    max-width: 700px;
+}
+
+.top-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    color: #aaa;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    background: #55ff55;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.top-title {
+    margin-bottom: 20px;
+    color: #fff;
+    font-family: 'MinecraftBold', sans-serif;
+    font-size: 64px;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0 #1b1b1b;
+}
+
+.top-tagline {
+    margin-bottom: 35px;
+    color: #ccc;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.top-ip {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding: 12px 20px;
+    background: #2b2b2bb5;
+    box-shadow: 0 0 0 3px #1b1b1b3f;
+    backdrop-filter: blur(10px); 
+}
+
+.top-ip-label {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.top-ip-value {
+    color: #55ff55;
+    font-family: 'MinecraftBold', sans-serif;
+    font-size: 1rem;
+}
+
+.top-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.top-actions .nav-button-block {
+    width: 160px;
+    height: 52px;
+    font-size: 18px;
+}
+
+.button-grey {
+    background: #404abe;
+    box-shadow:
+        inset 0 -5px 0 #282e6f,
+        0 0 0 3px #1b1b1b;
+}
+
+.button-grey:hover {
+    background: #5865F2;
+    box-shadow:
+        inset 0 -5px 0 #282e6f,
+        0 0 0 3px #1b1b1b;
+}
+
+.button-grey:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: flex;
+    }
+}
