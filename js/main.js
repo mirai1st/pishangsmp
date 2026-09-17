@@ -2,7 +2,7 @@ const button_block = document.querySelectorAll("a");
 
 button_block.forEach(btn => {
     btn.addEventListener("click", () => {
-        new Audio('./assets/sounds/mc-click.mp3').play();
+        new Audio('../assets/sounds/mc-click.mp3').play();
     })
 })
 
