@@ -25,5 +25,43 @@ async function fetchPlayerCount() {
     }
 }
 
-fetchPlayerCount();
-setInterval(fetchPlayerCount, 60000); // refresh setiap 60 saat
+
+
+// Loader
+
+// Loader percentage
+const loaderPercentEl = document.getElementById("loader-percent");
+const loaderContainer = document.querySelector(".loader-container");
+
+let progress = 0;
+
+const progressInterval = setInterval(() => {
+    // naik random sikit-sikit supaya nampak natural, tapi jangan lebih 90% sebelum betul-betul loaded
+    progress += Math.random() * 10;
+    if (progress > 90) progress = 90;
+
+    loaderPercentEl.textContent = `${Math.floor(progress)}%`;
+}, 200);
+
+window.addEventListener('load', (event) => {
+    clearInterval(progressInterval);
+    loaderPercentEl.textContent = "100%";
+
+    setTimeout(() => {
+        // fade out loader
+        loaderContainer.style.opacity = "0";
+        loaderContainer.style.pointerEvents = "none";
+        AOS.init();
+        AOS.refreshHard();
+        window.dispatchEvent(new Event("scroll"));
+        requestAnimationFrame(() => {
+            document.querySelectorAll("[data-aos]").forEach((element) => {
+                element.classList.add("aos-animate");
+            });
+        });
+
+        fetchPlayerCount();
+        setInterval(fetchPlayerCount, 60000);
+
+    }, 300);
+});

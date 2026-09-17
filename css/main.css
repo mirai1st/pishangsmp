@@ -30,7 +30,8 @@ html, body {
 body {
     font-family: 'Minecraft', sans-serif;
     position: relative;
-    overflow:auto;
+    overflow: auto;
+    background-color: #1a1a1a;   /* ← tambah ni, sepadan dengan loader-container */
 }
 
 /* fixed background video */
@@ -128,7 +129,6 @@ nav a:hover {
 }
 
 /* top / hero */
-
 #top {
     display: flex;
     align-items: center;
@@ -161,17 +161,7 @@ nav a:hover {
     animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.5;
-    }
-}
+
 
 .top-title {
     margin-bottom: 20px;
@@ -247,9 +237,102 @@ nav a:hover {
     display: none;
 }
 
+/* Loader */
+
+.content {
+    opacity: 1;
+}
+
+.loader-container {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    transition: opacity 0.6s ease;
+    pointer-events: auto;
+}
+
+#loader-percent {
+    color: white;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 60px;
+  aspect-ratio: 1;
+  color: #fefefe;
+  position: relative;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  inset:0;
+  background:
+    linear-gradient(currentColor 0 0) 0 calc(var(--s,0)*-100%)/100% calc(100%/3),
+    repeating-linear-gradient(90deg,currentColor 0 25%,#0000 0 50%) calc(var(--s,0)*100%) 50%/calc(4*100%/3) calc(100%/3);
+  background-repeat: no-repeat;
+  animation: l26 2s infinite;
+}
+.loader::after {
+  --s:-1;
+}
+@keyframes l26 {
+    0%,
+    10%  {transform:translateY(calc(var(--s,1)*0));   background-position: 0 calc(var(--s,0)*-100%),calc(var(--s,0)*100%) 50%}
+    33%  {transform:translateY(calc(var(--s,1)*-20%));background-position: 0 calc(var(--s,0)*-100%),calc(var(--s,0)*100%) 50%}
+    66%  {transform:translateY(calc(var(--s,1)*-20%));background-position: 0 calc(var(--s,0)*-100%),calc(var(--s,0)*100% + 100%) 50%}
+    90%,
+    100%  {transform:translateY(calc(var(--s,1)*0));  background-position: 0 calc(var(--s,0)*-100%),calc(var(--s,0)*100% + 100%) 50%}
+}
+
+/* --- ANIMATIONS --- */
+
+/* Step-based progress filling */
+@keyframes load-blocks {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Retro text blink */
+@keyframes pixel-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     nav {
         padding: 20px 20px;
+    }
+
+    .top-title {
+        font-size: 64px;
     }
 
     .desktop-nav {
