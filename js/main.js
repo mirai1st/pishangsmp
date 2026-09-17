@@ -51,6 +51,9 @@ window.addEventListener('load', (event) => {
         // fade out loader
         loaderContainer.style.opacity = "0";
         loaderContainer.style.pointerEvents = "none";
+
+        loadVideoFirst();
+
         AOS.init();
         AOS.refreshHard();
         window.dispatchEvent(new Event("scroll"));
@@ -65,3 +68,34 @@ window.addEventListener('load', (event) => {
 
     }, 300);
 });
+
+async function loadVideoFirst() {
+  try {
+    console.log("Downloading video...");
+    
+    // 1. Wait for the video file to download
+    const response = await fetch('assets/videos/BND4.mp4');
+    
+    // 2. Convert response to a Blob
+    const videoBlob = await response.blob();
+    
+    // 3. Create a local URL for the blob
+    const videoUrl = URL.createObjectURL(videoBlob);
+    
+    console.log("Video download complete!");
+    
+    // 4. Do your next steps here
+    playVideo(videoUrl);
+
+    return true;
+    
+  } catch (error) {
+    console.error("Download failed:", error);
+  }
+}
+
+function playVideo(url) {
+  const videoElement = document.querySelector('#videobg');
+  videoElement.src = url;
+  videoElement.play();
+}
